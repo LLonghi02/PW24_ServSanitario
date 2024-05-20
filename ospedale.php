@@ -91,12 +91,13 @@
                         if ($result) {
                             echo "<p>Inserimento avvenuto con successo</p>";
 
+                            $codice = "";
+
                             $query = getOspedale($codice, $nome, $citta, $indirizzo, $direttoreSanitario);
                 
                             $result = executeQuery($query);
 
                             stampaResOsp($result);
-                            echo "</table>";
                         } else {
                             echo "<p>Inserimento fallito</p>";
                         }

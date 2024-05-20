@@ -56,7 +56,7 @@ function getOspedale($codice, $nome, $citta, $indirizzo, $direttoreSanitario): s
         $qry = $qry . "AND Ospedale.indirizzo LIKE '" . $indirizzo . "%' ";
 
     if ($direttoreSanitario != "")
-        $qry = $qry . "AND Ospedale.direttoreSanitario = '" . $direttoreSanitario . "%' ";
+        $qry = $qry . "AND Ospedale.direttoreSanitario LIKE '" . $direttoreSanitario . "%' ";
 
 
     return $qry;
@@ -287,10 +287,12 @@ function insertOspedale($nome, $città, $indirizzo, $direttore): string
     $numCodici = max($codici);
 
     if (!existDirettore($direttore)) {
-        return "Inserire un direttore valido";
+        echo "Inserire un direttore valido";
+        return "";
     } else {
         if (!noDoubleDir($direttore)) {
-            return "Direttore gia di un altro ospedale";
+            echo "Direttore gia di un altro ospedale";
+            return "";
         } else {
             if ($numCodici < 100) {
                 $codice = "COD0" . ($numCodici + 1);
@@ -462,15 +464,26 @@ function stampaRicoveriCosto($costoMinimo)
 
     $result = executeQuery($qry);
 
+    echo "<div class='table-container'>";
     echo "<table class='table'>";
     echo "<tr class='header'>
-            <th>Cod Ospedale</th>
-            <th>Cod</th>
-            <th>Paziente</th>
-            <th>Data</th>
-            <th>Durata</th>
-            <th>Motivo</th>
-            <th>Costo</th></tr>";
+        <th>
+            <a href='#' class='sort-link' data-column='0'>Cod Ospedale<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
+        </a></th>
+        <th><a href='#' class='sort-link' data-column='1'>Cod<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
+        </a></th>
+        <th><a href='#' class='sort-link' data-column='2'>Paziente<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
+        </a></th>
+        <th><a href='#' class='sort-link' data-column='3'>Data<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
+        </a></th>
+        <th><a href='#' class='sort-link' onclick='sortTable2(4)'>Durata<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
+        </a></th>
+        <th><a href='#' class='sort-link' data-column='5'>Motivo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
+        </a></th>
+        <th><a href='#' class='sort-link' data-column='6'>Costo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
+        </a></th>
+    </tr>";
+
     $i = 0;
     foreach ($result as $riga) {
         $i = $i + 1;
@@ -486,16 +499,17 @@ function stampaRicoveriCosto($costoMinimo)
         $motivo = $riga["motivo"];
         $costo = $riga["costo"];
         echo "<tr $classRiga>
-            <td>" . formatLink("ospedale.php?codice", $codOspedale) . "</td>
-            <td>$cod</td>
-            <td>" . formatLink("cittadino.php?CSSN", $paziente) . "</td>
-            <td>$data</td>
-            <td>" . $durata . " giorni</td>
-            <td>" . formatLink("patologia.php?nome", $motivo) . "</td>
-            <td>$costo</td>
-            </tr>";
+        <td>" . formatLink("ospedale.php?codice", $codOspedale) . "</td>
+        <td>$cod</td>
+        <td>" . formatLink("cittadino.php?CSSN", $paziente) . "</td>
+        <td>$data</td>
+        <td>" . $durata . " giorni</td>
+        <td>" . formatLink("patologia.php?nome", $motivo) . "</td>
+        <td>$costo</td>
+        </tr>";
     }
     echo "</table>";
+    echo "</div>";
 
 }
 
@@ -533,7 +547,7 @@ function numeroRicoveriCostoSuperiore($costoMinimo)
 
 function sommaCostiPerMotivo($motivo)
 {
-    $query = "SELECT SUM(costo) AS somma_costi FROM Ricovero WHERE motivo = '$motivo'";
+    $query = "SELECT SUM(costo) AS somma_costi FROM Ricovero WHERE motivo LIKE '$motivo%'";
     $result = executeQuery($query);
     if ($result !== false) {
         $row = $result->fetch(PDO::FETCH_ASSOC);
