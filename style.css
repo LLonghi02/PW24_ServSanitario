@@ -1,0 +1,333 @@
+/*Stili per dispositivi con schermo fino a 768px */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+/* Stili per dispositivi con schermo fino a 480px */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#faf9d5;
+    box-sizing: border-box;
+}
+header {
+    background-color: #955F40;
+    color: white;
+    text-align:center;
+    padding: 5px 5px;
+    margin: 0;
+}
+
+nav{
+    font-size:1.3em;
+	font-family: Arial, sans-serif;
+	margin:0;
+	text-align:center;
+    background-color: #EBC7A1;
+}
+
+
+nav ul{
+    font-size:1.1em;
+	font-family: Arial, sans-serif;
+    padding: 10px 10px;
+	margin:0 auto;
+	text-align:center;
+    background-color: #EBC7A1;
+}
+	
+nav ul li{
+	display:inline-block;
+	list-style-type:none;
+}
+nav img{
+    width: 100px; 
+    height: 100px; 
+}
+
+nav ul li a.scritte{
+    display: inline-block;
+	text-decoration:none;
+    text-align: center;
+	color:#955F40;
+    margin-right: 15px;
+    margin-left:15px;
+
+}
+nav ul li a.image{
+
+	text-decoration:none;
+	color:#955F40;
+    margin-right: 10px;
+
+}
+nav ul li a:hover{
+	color:white;
+    background-color: #EBC7A1;
+	text-decoration:none;
+}
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+
+.filtro {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #955F40;
+    margin-bottom: 20px;
+    font-style: italic;
+    background-color: #fefefe;
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: 800px;
+}
+
+.filtro::-webkit-scrollbar {
+    width: 6px; /* Larghezza della barra di scorrimento */
+}
+
+/* Stili del pollice della barra di scorrimento */
+.filtro::-webkit-scrollbar-thumb {
+    background-color: #955F40; /* Colore del pollice */
+    border-radius: 6px; /* Arrotondamento del pollice */
+}
+
+/* Stili della traccia della barra di scorrimento */
+.filtro::-webkit-scrollbar-track {
+    background-color: #EBC7A1; /* Colore della traccia */
+}
+.filtro img.lente {
+    width: 35px; 
+    height:35px;
+}
+.filtro img {
+    width: 100%; 
+    height:100%;
+}
+.filtro a{
+    padding: 6px;
+    color:#955F40;
+    text-decoration:none;
+
+}
+.filtro a:hover{
+            color:white;
+			text-decoration:none;
+}
+.filtro input[type="text"],input[type="date"], select {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 10px; 
+  border: 1px solid #955F40;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #faf9d5;
+
+}
+
+ input[type="submit"] {
+  width: 50%;
+  padding: 10px;
+  border: 2px;
+  border-radius: 10px;
+  background-color: #E7D8CA;
+  color: #955F40;
+  cursor: pointer;
+}
+
+.filtro input[type="submit"]:hover {
+  background-color: #B8ADA7;
+  color:white;
+}
+button[type="submit"] {
+  width: 20%;
+  padding: 20px;
+  border: 2px;
+  border-radius: 10px;
+  background-color: #E7D8CA;
+  color: #955F40;
+  cursor: pointer;
+  font-size:1.2em;
+
+}
+button[type="submit"]:hover {
+  background-color: #B8ADA7;
+  color:white;
+}
+.container a{
+            color:#955F40;
+           	text-decoration:none;
+
+        }
+.container a:hover{
+            color: black;
+			text-decoration:none;
+}
+.contenuto {
+    flex: 3;
+    margin-left: 20px;
+    max-height: 59%;
+
+}
+.ce{
+	margin-top:10%;
+    text-align: center;}
+.ce button[type="submit"] {
+  width: 10%;
+  padding: 20px;
+  border: 5px solid #955F40;
+  border-radius: 20px;
+  background-color: #E7D8CA;
+  color: #955F40;
+  cursor: pointer;
+  font-size:1.2em;
+}
+.ce button[type="submit"]:hover {
+  background-color: #955F40;
+  color:white;
+}
+
+
+footer {
+    background-color: #EBC7A1;
+    color: #fff;
+    text-align: right;
+    padding: 5px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Style the table container */
+.table-container {
+ max-height: 800px; /* Altezza massima della tabella */
+  overflow-y: auto; /* Abilita lo scorrimento verticale */
+  border: 2px solid #955F40; /* Stile del bordo */
+  border-radius: 3px; /* Bordi arrotondati */
+  margin-bottom:20px;
+}
+.table-container.scrollable {
+  overflow-y: auto;
+}
+/* Stili della barra di scorrimento */
+.table-container::-webkit-scrollbar {
+  width: 8px; /* Larghezza della barra di scorrimento */
+}
+
+/* Stili del pollice della barra di scorrimento */
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #955F40; /* Colore del pollice */
+  border-radius: 6px; /* Arrotondamento del pollice */
+}
+
+/* Stili della traccia della barra di scorrimento */
+.table-container::-webkit-scrollbar-track {
+  background-color: #EBC7A1; /* Colore della traccia */
+}
+
+/* Style the table header */
+.table thead {
+  background-color: #955F40;
+  color: #fefee9;
+}
+
+/* Style the table body */
+.table tbody {
+  overflow-y: auto; /* Abilita lo scorrimento verticale */
+}
+.table{
+	border: 2px solid #955F40;	
+    border-radius:3px;
+	width: 100%;
+    overflow-y: auto;
+    max-height: 70%;
+}
+
+.table body {
+        height: 300px; /* adjust this value to your needs */
+        overflow-y: auto;
+    }
+.mc{
+   display: block;
+    margin: auto;
+    width: 25px; 
+    height:25px;
+}
+.arrow-icon {
+    width: 20px; /* Regola la larghezza dell'icona */
+    height: 20px; /* Regola l'altezza dell'icona */
+    margin-left: 3px;
+	
+}
+
+.header{
+	height:35px;
+
+	background: #955F40;
+	color:#fefee9;
+            position: sticky;
+        top: 0;
+}
+.header th {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.header th a {
+    text-decoration: none;
+    color: #fffee8;
+    display: inline-block;
+     position: relative;
+}
+
+.header th a:hover {
+    color: #fffee8;
+}
+.sort-icon::after {
+    content: ' \2195'; /* Freccia bidirezionale */
+    position: absolute; /* Posizionamento assoluto rispetto al link */
+    top: 50%; /* Posizione verticale al centro */
+    right: 5px; /* Distanza dalla destra */
+    transform: translateY(-50%); /* Centro verticalmente */
+    opacity: 0; /* Inizialmente invisibile */
+    transition: opacity 0.2s ease; /* Animazione di transizione */
+}
+
+.header th a:hover .sort-icon::after {
+    opacity: 1; /* Mostra l'icona sull'hover */
+}
+.rowEven { 
+		height:25px;
+
+	background: #fffee8;
+}
+.rowOdd {  
+	height:25px;
+
+	background: #E7D8CA;
+}
+.table a{
+	text-decoration:underline;
+	color:black;
+}
+.table a:hover{
+	color:#955F40;
+}
+
+/*div.sezioneNav {
+    float: left;
+}*/
