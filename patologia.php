@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +32,6 @@
                         <option>Cronica</option>
                         <option>Mortale</option>
                     </select><br/>
-                    <!--<input type="text" id="tipologia" name="tipologia" placeholder="Tipologia"/>-->
                     <input type="submit" value="Cerca" />
                 </form>
                 <p>Il numero di patologie che hanno criticità maggiore di: </p>
@@ -75,7 +73,5 @@
                 ?>
             </div>
         </div>
-
     </body>
-
 </html>

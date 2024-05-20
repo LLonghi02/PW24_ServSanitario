@@ -39,9 +39,10 @@
                 </p>
          <p><img class="lente" src="Icone/freccia.png" />     
 		<?php
-// Questo è il codice PHP per tornare alla pagina precedente con un link "Torna indietro"
-echo '<a href="javascript:history.go(-1)">Torna indietro</a>';
-?></p>
+            // Questo è il codice PHP per tornare alla pagina precedente con un link "Torna indietro"
+            echo '<a href="javascript:history.go(-1)">Torna indietro</a>';
+        ?>
+        </p>
             </div>
 
             <div class="contenuto">

@@ -8,11 +8,6 @@ function controlloInserimento(){
         alert("Inserimento non valido: compilare tutti i campi!");
         return false;
     }
-    else{
-        if(controlloInjection(nome) || controlloInjection(citta) || controlloInjection(indirizzo) || controlloInjection(direttore)){
-            return false;
-        }
-    }
 
     return true;
 }
@@ -31,14 +26,6 @@ function setTitoloRicovero(){
 
 function setTitoloPatologia(){
     $("#titoloPagina").text("PATOLOGIA");
-}
-
-function controlloInjection(stringa){
-    if(stringa.toUpperCase().includes("DROP TABLE") || stringa.toUpperCase().includes("ALTER TABLE") || stringa.toUpperCase().includes("SELECT ")){
-        return true;
-    }
-
-    return false;
 }
 
 document.addEventListener("DOMContentLoaded", function() {

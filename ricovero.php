@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,11 +51,12 @@
                     <input id="durata" name="durata" type="text" placeholder="Durata minima dei ricoveri"  pattern="\d+ giorni?" title="Inserisci una durata valida: numero seguito da 'giorni'" />
                     <input type="submit" name="durataSup" value="Trova" />
                 </form>
-                         <p><img class="lente" src="Icone/freccia.png" />     
-		<?php
-// Questo è il codice PHP per tornare alla pagina precedente con un link "Torna indietro"
-echo '<a href="javascript:history.go(-1)">Torna indietro</a>';
-?></p>
+                        <p><img class="lente" src="Icone/freccia.png" />     
+                            <?php
+                                // Questo è il codice PHP per tornare alla pagina precedente con un link "Torna indietro"
+                                echo '<a href="javascript:history.go(-1)">Torna indietro</a>';
+                            ?>
+                        </p>
             </div>
 
             <div class="contenuto">
@@ -119,7 +119,5 @@ echo '<a href="javascript:history.go(-1)">Torna indietro</a>';
                 ?>
             </div>
         </div>
-
     </body>
-
 </html>

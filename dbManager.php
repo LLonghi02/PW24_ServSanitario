@@ -6,7 +6,6 @@ function executeQuery($query)
     try {
         $result = $conn->query($query);
     } catch (PDOException $e) {
-        //echo "<p>DB Error on Query: " . $e->getMessage() . "</p>";
         $error = true;
         $result = false;
     }
@@ -151,7 +150,6 @@ function getPatologiaCronica($cod, $nome, $criticita)
 function stampaPatologie($cod, $nome, $criticita, $tipologia)
 {
     $query = getPatologia($cod, $nome, $criticita, $tipologia);
-    //echo "<p>getPatologia: " . $query . "</p>";
 
     $result = executeQuery($query);
     echo "<div class='table-container'>";
@@ -274,7 +272,6 @@ function setOs($codice, $nome, $indirizzo, $citta, $direttoreSanitario): string
 
 function insertOspedale($nome, $città, $indirizzo, $direttore): string
 {
-    #echo "direttore: " . $direttore;
 
     $qry = "INSERT INTO Ospedale (codice, nome, città, indirizzo, direttoreSanitario) VALUES ";
 
@@ -289,9 +286,6 @@ function insertOspedale($nome, $città, $indirizzo, $direttore): string
 
     $numCodici = max($codici);
 
-    /*if (empty($nome) || empty($città) || empty($indirizzo) || empty($direttore)) {
-        return "Error: inserimento non valido!";
-    }*/
     if (!existDirettore($direttore)) {
         return "Inserire un direttore valido";
     } else {
@@ -358,7 +352,6 @@ function formatLink($link, $chiave): string
 function stampaCittadini($CSSN, $nome, $cognome, $dataNascita, $luogoNascita, $indirizzo)
 {
     $query = getCittadino($CSSN, $nome, $cognome, $dataNascita, $luogoNascita, $indirizzo);
-    //echo "<p>getCittadino: " . $query . "</p>";
 
     $result = executeQuery($query);
     echo "<div class='table-container'>";
@@ -411,7 +404,6 @@ function getNati($citta)
 function stampaRicoveri($codOsp, $cod, $paziente, $data, $durata, $motivo, $costo)
 {
     $query = getRicovero($codOsp, $cod, $paziente, $data, $durata, $motivo, $costo);
-    //echo "<p>getRicovero: " . $query . "</p>";
 
     $result = executeQuery($query);
     echo "<div class='table-container'>";

@@ -68,7 +68,8 @@
                                 echo "<script>alert('Direttore gia di un altro ospedale')</script>";
                             }
                         }
-                     }else{
+                    }
+                    else{
                         $query = setOs($codice, $nome, $indirizzo, $citta, $direttoreSanitario);
                         try {
                             $result = $conn->query($query);
@@ -78,35 +79,25 @@
                                     </script>";
 
                         } catch (PDOException $e) {
-                            //echo "<h3>DB Error on Query: " . $e->getMessage() . "</h3>";
                             $error = true;
                         }
-        if (!$error) {
-            //header("Location: ospedale.php");
-            exit(); // Termina lo script dopo il reindirizzamento
-        }
-                       /* if (!$error) {
-                            header("Location: ospedale.php");
-                            echo ("<script>alert('Modifica andata a buon fine')</script>");
-                        } else {
-                            echo ("<script>alert(" . $error . ")</script>");
-                        }*/
-                    
-					
-                }
+                        if (!$error) {
+                            exit(); //Termina lo script dopo il reindirizzamento
+                        }
+                    }
 
             } else if (count($_GET) > 0) {
                 $codice = $_GET["codice"];
             }
+
             $query = getOspedale($codice, $nome = "", $citta = "", $indirizzo = "", $direttoreSanitario = "");
+
             try {
                 $result = $conn->query($query);
             } catch (PDOException $e) {
-                //echo "<p>DB Error on Query: " . $e->getMessage() . "</p>";
                 $error = true;
             }
 
-            //if (!$error) {
             ?>
             <form name="myform" method="POST">
                 <table class="smalltable">
@@ -147,8 +138,6 @@
                 <br>
                 <input type="submit" value="Applica modifiche" />
             </form>
-            <?php //}  ?>
-
         </div>
     </div>
     </div>
