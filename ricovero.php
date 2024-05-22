@@ -19,7 +19,6 @@
 
         ?>
 
-
         <div class="container">
             <div class="filtro">
                 <h3>Effettua le tue ricerche <img class="lente" src="Icone/lente.png" /></h3>

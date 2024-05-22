@@ -82,38 +82,6 @@ function stampaCittadini($CSSN, $nome, $cognome, $dataNascita, $luogoNascita, $i
     $result = executeQuery($query);
     
     tabellaCittadini($result);
-    /*echo "<div class='table-container'>";
-
-    echo "<table class='table'>";
-    echo "<tr class='header'>
-        <th><a href='#' class='sort-link' data-column='0'>CSSN<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='1'>Nome<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='2'>Cognome<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='3'>Data di Nascita<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='4'>Luogo di Nascita<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='5'>Indirizzo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-    </tr>";
-
-
-
-    $i = 0;
-    foreach ($result as $riga) {
-        $i = $i + 1;
-        $classRiga = 'class="rowOdd"';
-        if ($i % 2 == 0) {
-            $classRiga = 'class="rowEven"';
-        }
-        echo "<tr $classRiga>
-                <td>{$riga['CSSN']}</td>
-                <td>{$riga['nome']}</td>
-                <td>{$riga['cognome']}</td>
-                <td>{$riga['dataNascita']}</td>
-                <td>{$riga['luogoNascita']}</td>
-                <td>{$riga['indirizzo']}</td></tr>";
-    }
-    echo "</table>";
-    echo "</div >";*/
-
 }
 
 function getNati($citta)
@@ -183,11 +151,11 @@ function stampaResOsp($result)
         $indirizzo = $riga["indirizzo"];
         $direttoreSanitario = $riga["direttoreSanitario"];
         echo "<tr $classRiga>
-                <td>$codice</td>
+                <td>" . formatLink("ospedale.php?codice", $codice, "") . "</td>
                 <td>$nome</td>
                 <td>$citta</td>
                 <td>$indirizzo</td>
-                <td>" . formatLink("cittadino.php?CSSN", $direttoreSanitario) . "</td>
+                <td>" . formatLink("cittadino.php?CSSN", $direttoreSanitario, "") . "</td>
                 <td>" . modificaOsp($codice) . "</td>
                 <td>" . eliminaOsp($codice) . "</td>
             </tr>";
@@ -362,12 +330,12 @@ function tabellaRicovero($result){
         $motivo = $riga["motivo"];
         $costo = $riga["costo"];
         echo "<tr $classRiga>
-        <td>" . formatLink("ospedale.php?codice", $codOspedale) . "</td>
+        <td>" . formatLink("ospedale.php?codice", $codOspedale, "") . "</td>
         <td>$cod</td>
-        <td>" . formatLink("cittadino.php?CSSN", $paziente) . "</td>
+        <td>" . formatLink("cittadino.php?CSSN", $paziente, "R") . "</td>
         <td>$data</td>
         <td>" . $durata . " giorni</td>
-        <td>" . formatLink("patologia.php?nome", $motivo) . "</td>
+        <td>" . formatLink("patologia.php?nome", $motivo, "") . "</td>
         <td>$costo</td>
         </tr>";
     }
@@ -383,54 +351,6 @@ function stampaRicoveri($codOsp, $cod, $paziente, $data, $durata, $motivo, $cost
     $result = executeQuery($query);
     
     tabellaRicovero($result);
-
-    /*echo "<div class='table-container'>";
-    echo "<table class='table'>";
-    echo "<tr class='header'>
-        <th>
-            <a href='#' class='sort-link' data-column='0'>Cod Ospedale<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='1'>Cod<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='2'>Paziente<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='3'>Data<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' onclick='sortTable2(4)'>Durata<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='5'>Motivo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='6'>Costo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-    </tr>";
-
-    $i = 0;
-    foreach ($result as $riga) {
-        $i = $i + 1;
-        $classRiga = 'class="rowOdd"';
-        if ($i % 2 == 0) {
-            $classRiga = 'class="rowEven"';
-        }
-        $codOspedale = $riga["codOspedale"];
-        $cod = $riga["cod"];
-        $paziente = $riga["paziente"];
-        $data = $riga["data"];
-        $durata = $riga["durata"];
-        $motivo = $riga["motivo"];
-        $costo = $riga["costo"];
-        echo "<tr $classRiga>
-        <td>" . formatLink("ospedale.php?codice", $codOspedale) . "</td>
-        <td>$cod</td>
-        <td>" . formatLink("cittadino.php?CSSN", $paziente) . "</td>
-        <td>$data</td>
-        <td>" . $durata . " giorni</td>
-        <td>" . formatLink("patologia.php?nome", $motivo) . "</td>
-        <td>$costo</td>
-        </tr>";
-    }
-    echo "</table>";
-    echo "</div>";*/
-
 }
 
 function stampaRicoveriCosto($costoMinimo)
@@ -440,63 +360,16 @@ function stampaRicoveriCosto($costoMinimo)
     $result = executeQuery($qry);
 
     tabellaRicovero($result);
-
-    /*echo "<div class='table-container'>";
-    echo "<table class='table'>";
-    echo "<tr class='header'>
-        <th>
-            <a href='#' class='sort-link' data-column='0'>Cod Ospedale<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='1'>Cod<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='2'>Paziente<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='3'>Data<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' onclick='sortTable2(4)'>Durata<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='5'>Motivo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='6'>Costo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-    </tr>";
-
-    $i = 0;
-    foreach ($result as $riga) {
-        $i = $i + 1;
-        $classRiga = 'class="rowOdd"';
-        if ($i % 2 == 0) {
-            $classRiga = 'class="rowEven"';
-        }
-        $codOspedale = $riga["codOspedale"];
-        $cod = $riga["cod"];
-        $paziente = $riga["paziente"];
-        $data = $riga["data"];
-        $durata = $riga["durata"];
-        $motivo = $riga["motivo"];
-        $costo = $riga["costo"];
-        echo "<tr $classRiga>
-        <td>" . formatLink("ospedale.php?codice", $codOspedale) . "</td>
-        <td>$cod</td>
-        <td>" . formatLink("cittadino.php?CSSN", $paziente) . "</td>
-        <td>$data</td>
-        <td>" . $durata . " giorni</td>
-        <td>" . formatLink("patologia.php?nome", $motivo) . "</td>
-        <td>$costo</td>
-        </tr>";
-    }
-    echo "</table>";
-    echo "</div>";*/
-
 }
 
-/*function stampaRicoveriDurata($durataMinima)
+function stampaRicoveriDurata($durataMinima)
 {
-    $qry = "SELECT * FROM Ricovero WHERE durata > $durataMinima";
+    $qry = "SELECT * FROM Ricovero WHERE durata > '$durataMinima'";
 
     $result = executeQuery($qry);
 
-}*/
+    tabellaRicovero($result);
+}
 
 function numeroRicoveri($durataMinima)
 {
@@ -597,6 +470,7 @@ function stampaPatologie($cod, $nome, $criticita, $tipologia)
     $query = getPatologia($cod, $nome, $criticita, $tipologia);
 
     $result = executeQuery($query);
+
     echo "<div class='table-container'>";
     echo "<table class='table'>";
     echo "<tr class='header'>
@@ -617,7 +491,7 @@ function stampaPatologie($cod, $nome, $criticita, $tipologia)
         $tipologia = getTipologiaPatologia($riga['cod']);
         echo "<tr $classRiga>
                 <td>{$riga['cod']}</td>
-                <td>{$riga['nome']}</td>
+                <td>". formatLink("patologia.php?nome", $riga['nome'], "") . "</td>
                 <td>{$riga['criticità']}</td>
                 <td>$tipologia</td>
               </tr>";
@@ -658,175 +532,89 @@ function countPatologieCriticitaMaggiore($criticitaMinima)
 //----------------------------------------------------------------------------------------------------------------------
 
 //Metodi generali
-function formatLink($link, $chiave): string
+function formatLink($link, $chiave, $controllo): string
 {
     if (is_null($chiave) || $chiave == "") {
         return "";
     }
 
+    if($controllo == "R"){
+        return "<a href='" . $link . "=" . $chiave . "&controllo=" . $controllo . "'>" . $chiave . "</a>";
+    }
+
     return "<a href='" . $link . "=" . $chiave . "'>" . $chiave . "</a>";
 }
 
-//Ricoveri di una persona
+//Ricoveri di un cittadino
 function ricoveriCittadino($cssn){
-    $query1 = "SELECT COUNT(cod) AS numRicoveriPaziente FROM Ricovero WHERE paziente = $cssn";
+
+    $query1 = "SELECT COUNT(*) AS numRicoveri FROM Ricovero WHERE paziente = '$cssn'";
 
     $result1 = executeQuery($query1);
     
-    $query2 = "SELECT * FROM Ricovero WHERE paziente = $cssn ORDER BY data";
+    $query2 = "SELECT * FROM Ricovero WHERE paziente = '$cssn'";
 
     $result = executeQuery($query2);
 
-    foreach($result1 as $r){
-        $numRicoveri = $r["numRicoveriPaziente"];
+    if($result1 != false){
+        foreach ($result1 as $rig){
+            $numRicoveri = $rig["numRicoveri"];
+        }
+    
+        echo "Il numero di ricoveri per il paziente $cssn è: $numRicoveri";
     }
-
-    echo "Il numero di ricoveri per il paziente $cssn è: $numRicoveri";
+    else{
+        echo "Il numero di ricoveri per il paziente $cssn è: 0";
+    }
 
     tabellaRicovero($result);
-
-    /*echo "<div class='table-container'>";
-    echo "<table class='table'>";
-    echo "<tr class='header'>
-        <th>
-            <a href='#' class='sort-link' data-column='0'>Cod Ospedale<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='1'>Cod<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='2'>Paziente<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='3'>Data<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' onclick='sortTable2(4)'>Durata<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='5'>Motivo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='6'>Costo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-    </tr>";
-
-    $i = 0;
-    foreach ($result as $riga) {
-        $i = $i + 1;
-        $classRiga = 'class="rowOdd"';
-        if ($i % 2 == 0) {
-            $classRiga = 'class="rowEven"';
-        }
-        $codOspedale = $riga["codOspedale"];
-        $cod = $riga["cod"];
-        $paziente = $riga["paziente"];
-        $data = $riga["data"];
-        $durata = $riga["durata"];
-        $motivo = $riga["motivo"];
-        $costo = $riga["costo"];
-        echo "<tr $classRiga>
-        <td>" . formatLink("ospedale.php?codice", $codOspedale) . "</td>
-        <td>$cod</td>
-        <td>" . formatLink("cittadino.php?CSSN", $paziente) . "</td>
-        <td>$data</td>
-        <td>" . $durata . " giorni</td>
-        <td>" . formatLink("patologia.php?nome", $motivo) . "</td>
-        <td>$costo</td>
-        </tr>";
-    }
-    echo "</table>";
-    echo "</div>";*/
 }
 
 // Cittadini ricoverati in un ospedale
 function cittadiniOspedali($codOspedale){
-    $query = "SELECT DISTINCT C.* FROM Cittadino C JOIN Ricovero R ON C.CSSN = R.paziente WHERE R.codOspedale = $codOspedale";
+    $query1 = "SELECT COUNT(DISTINCT paziente) AS numCittadini FROM Ricovero R WHERE R.codOspedale = '$codOspedale'";
+
+    $result1 = executeQuery($query1);
+
+    $query = "SELECT DISTINCT C.* FROM Cittadino C JOIN Ricovero R ON C.CSSN = R.paziente WHERE R.codOspedale = '$codOspedale'";
 
     $result = executeQuery($query);
 
-    tabellaCittadini($result);
-
-    /*echo "<div class='table-container'>";
-
-    echo "<table class='table'>";
-    echo "<tr class='header'>
-        <th><a href='#' class='sort-link' data-column='0'>CSSN<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='1'>Nome<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='2'>Cognome<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='3'>Data di Nascita<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='4'>Luogo di Nascita<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-        <th><a href='#' class='sort-link' data-column='5'>Indirizzo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'></a></th>
-    </tr>";
-
-
-
-    $i = 0;
-    foreach ($result as $riga) {
-        $i = $i + 1;
-        $classRiga = 'class="rowOdd"';
-        if ($i % 2 == 0) {
-            $classRiga = 'class="rowEven"';
+    if($result1 != false){
+        foreach ($result1 as $rig){
+            $numCittadini = $rig["numCittadini"];
         }
-        echo "<tr $classRiga>
-                <td>{$riga['CSSN']}</td>
-                <td>{$riga['nome']}</td>
-                <td>{$riga['cognome']}</td>
-                <td>{$riga['dataNascita']}</td>
-                <td>{$riga['luogoNascita']}</td>
-                <td>{$riga['indirizzo']}</td></tr>";
+    
+        echo "Il numero di cittadini ricoverati nell'ospedale $codOspedale è: $numCittadini";
     }
-    echo "</table>";
-    echo "</div >";*/
+    else{
+        echo "Il numero di cittadini ricoverati nell'ospedale $codOspedale è: 0";
+    }
+
+    tabellaCittadini($result);
 }
 
 // Ricoveri di una data patologia
 function ricoveriPatologia($patologia){
-    $query = "SELECT * FROM Ricovero WHERE motivo = $patologia ORDER BY data";
+    $query1 = "SELECT COUNT(*) AS numRicoveri FROM Ricovero WHERE motivo = '$patologia'";
+
+    $result1 = executeQuery($query1);
+
+    $query = "SELECT * FROM Ricovero WHERE motivo = '$patologia'";
 
     $result = executeQuery($query);
 
-    tabellaRicovero($result);
-
-    /*echo "<div class='table-container'>";
-    echo "<table class='table'>";
-    echo "<tr class='header'>
-        <th>
-            <a href='#' class='sort-link' data-column='0'>Cod Ospedale<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='1'>Cod<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='2'>Paziente<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='3'>Data<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' onclick='sortTable2(4)'>Durata<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='5'>Motivo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-        <th><a href='#' class='sort-link' data-column='6'>Costo<img src='Icone/fb.png' alt='Freccia' class='arrow-icon'>
-        </a></th>
-    </tr>";
-
-    $i = 0;
-    foreach ($result as $riga) {
-        $i = $i + 1;
-        $classRiga = 'class="rowOdd"';
-        if ($i % 2 == 0) {
-            $classRiga = 'class="rowEven"';
+    if($result1 != false){
+        foreach ($result1 as $rig){
+            $numRicoveri = $rig["numRicoveri"];
         }
-        $codOspedale = $riga["codOspedale"];
-        $cod = $riga["cod"];
-        $paziente = $riga["paziente"];
-        $data = $riga["data"];
-        $durata = $riga["durata"];
-        $motivo = $riga["motivo"];
-        $costo = $riga["costo"];
-        echo "<tr $classRiga>
-        <td>" . formatLink("ospedale.php?codice", $codOspedale) . "</td>
-        <td>$cod</td>
-        <td>" . formatLink("cittadino.php?CSSN", $paziente) . "</td>
-        <td>$data</td>
-        <td>" . $durata . " giorni</td>
-        <td>" . formatLink("patologia.php?nome", $motivo) . "</td>
-        <td>$costo</td>
-        </tr>";
+    
+        echo "Il numero di ricoveri per la patologia $patologia è: $numRicoveri";
     }
-    echo "</table>";
-    echo "</div>";*/
+    else{
+        echo "Il numero di ricoveri per la patologia $patologia è: 0";
+    }
+
+    tabellaRicovero($result);
 }
 ?>

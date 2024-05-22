@@ -67,6 +67,8 @@
                     $tipologia = $_GET["tipologia"];
 
                     stampaPatologie($cod, $nome, $criticita, $tipologia);
+
+                    ricoveriPatologia($nome);
                 } else {
                     stampaPatologie($cod, $nome, $criticita, $tipologia);
                 }

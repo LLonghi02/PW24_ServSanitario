@@ -115,6 +115,8 @@
                     $result = executeQuery($query);
 
                     stampaResOsp($result);
+
+                    cittadiniOspedali($codice);
                 } else {
                     $query = getOspedale("", "", "", "", "");
                 

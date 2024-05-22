@@ -76,8 +76,14 @@
                         $dataNascita = $_GET["dataNascita"];
                         $luogoNascita = $_GET["luogoNascita"];
                         $indirizzo = $_GET["indirizzo"];
+                        $controllo = $_GET["controllo"];
 
                         stampaCittadini($CSSN, $nome, $cognome, $dataNascita, $luogoNascita, $indirizzo);
+                        
+                        if($controllo == "R"){
+                            ricoveriCittadino($CSSN);
+                        }
+                        
                     }
                     else{
                         stampaCittadini($CSSN, $nome, $cognome, $dataNascita, $luogoNascita, $indirizzo);
