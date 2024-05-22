@@ -79,7 +79,7 @@
                     elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['costoSup'])) {
                         $costoMinimo = $_POST['costo'];
                         $num_ricoveri = numeroRicoveriCostoSuperiore($costoMinimo);
-                        echo "Il numero di ricoveri il costo è superiore a $costoMinimo è: $num_ricoveri";
+                        echo "Il numero di ricoveri il cui costo è superiore a $costoMinimo è: $num_ricoveri";
 
                         stampaRicoveriCosto($costoMinimo);
                     }
