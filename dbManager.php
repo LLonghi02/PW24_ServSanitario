@@ -97,7 +97,19 @@ function getNati($citta)
         return "Errore nel recuperare i cittadini nati nella città specificata.";
     }
 }
+function getCSSN($nome,$cognome)
+{
+    $query = "SELECT CSSN FROM Cittadino WHERE nome= '$nome' AND cognome= '$cognome'";
 
+    $result = executeQuery($query);
+
+    if ($result !== false) {
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        return $row['CSSN'];
+    } else {
+        return "Errore nel recuperare i CSSN.";
+    }
+}
 //-----------------------------------------------------------------------------------------------------------------------
 // Metodi Ospedale
 function getOspedale($codice, $nome, $citta, $indirizzo, $direttoreSanitario): string
@@ -330,7 +342,7 @@ function tabellaRicovero($result){
         $motivo = $riga["motivo"];
         $costo = $riga["costo"];
         echo "<tr $classRiga>
-        <td>" . formatLink("ospedale.php?codice", $codOspedale, "") . "</td>
+        <td>" . formatLink("ospedale.php?codice", $codOspedale, "O") . "</td>
         <td>$cod</td>
         <td>" . formatLink("cittadino.php?CSSN", $paziente, "R") . "</td>
         <td>$data</td>
@@ -538,7 +550,7 @@ function formatLink($link, $chiave, $controllo): string
         return "";
     }
 
-    if($controllo == "R"){
+    if($controllo == "R" || $controllo == "O"){
         return "<a href='" . $link . "=" . $chiave . "&controllo=" . $controllo . "'>" . $chiave . "</a>";
     }
 

@@ -26,9 +26,10 @@
                     <input id="cod" name="cod" type="text" placeholder="Cod" pattern="PAT\d{3}"
                         title="Inserisci un codice valido: PAT+3 cifre numeriche" /><br/>
                     <input id="nome" name="nome" type="text" placeholder="Nome" /><br/>
-                    <input id="criticità" name="criticità" type="text" placeholder="Criticità"/><br/>
+                    <input id="criticità" name="criticità" type="text" placeholder="Criticità"
+                    pattern="^\d$"                         title="Inserisci un solo valore numerico"/><br/>
                     <select id="tipologia" name="tipologia" placeholder="Tipologia">
-                        <option></option>
+                    	<option></option>
                         <option>Cronica</option>
                         <option>Mortale</option>
                     </select><br/>
@@ -36,8 +37,8 @@
                 </form>
                 <p>Il numero di patologie che hanno criticità maggiore di: </p>
                 <form name="formcriti" method="POST">
-                    <input id="criticità1" name="criticità1" type="text" placeholder="Criticità" />
-                    <input type="submit" value="Trova" />
+                    <input id="criticità1" name="criticità1" type="text" placeholder="Criticità"  pattern="^\d$"                         title="Inserisci un singolo valore numerico" />
+                    <input type="submit" value="Cerca" />
                 </form>
                 <p><img class="lente" src="Icone/freccia.png" />
                     <?php

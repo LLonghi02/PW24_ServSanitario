@@ -30,18 +30,18 @@
                     <input id="data" name="data" type="date" placeholder="Data" /><br>
                     <input id="durata" name="durata" type="text" placeholder="Durata"  pattern="\d+ giorni?" title="Inserisci una durata valida: numero seguito da 'giorni'" /><br>
                     <input id="motivo" name="motivo" type="text" placeholder="Motivo" /><br>
-                    <input id="costo" name="costo" type="text" placeholder="Costo" /><br>
+                    <input id="costo" name="costo" type="text" placeholder="Costo" pattern="\d+" title="Inserisci un valore numerico"  /><br>
                     <input type="submit" name ="ricerca" value="Cerca" />
                 </form>
                 <p>Il costo complessivo dei ricoveri per:</p>
                 <form name="formCostotot" method="POST">
                     <input id="motivo" name="motivo" type="text" placeholder="Motivo" />
-                    <input type="submit" name="costoComplessivo" value="Calcola il costo" />
+                    <input type="submit" name="costoComplessivo" value="Calcola il costo" pattern="\d+" title="Inserisci un valore numerico"  />
                 </form>
 
                 <p>Il numero di ricoveri che hanno un costo superiore di:</p>
                 <form name="formCosto" method="POST">
-                    <input id="costo" name="costo" type="text" placeholder="Costo" />
+                    <input id="costo" name="costo" type="text" placeholder="Costo" pattern="\d+" title="Inserisci un valore numerico" />
                     <input type="submit" name ="costoSup" value="Trova" />
                 </form>
 
