@@ -125,7 +125,9 @@
 
                     $query = getOspedale($codice, $nome, $citta, $indirizzo, $direttoreSanitario);
                     $result = executeQuery($query);
-                    stampaResOsp($result);
+                    
+               		 stampaResOsp($result);
+            
                 } elseif (isset($_POST["submitIns"])) {
                     $nome = $_POST["nomeIns"];
                     $citta = $_POST["cittàIns"];
